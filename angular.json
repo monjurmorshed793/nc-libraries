@@ -1,7 +1,42 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "0429902f-7e6c-4817-b870-e1b20da49840"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "nc-api-service": {
+      "projectType": "library",
+      "root": "projects/nc-api-service",
+      "sourceRoot": "projects/nc-api-service/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/nc-api-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/nc-api-service/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/nc-api-service/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/nc-api-service/src/test.ts",
+            "tsConfig": "projects/nc-api-service/tsconfig.spec.json",
+            "karmaConfig": "projects/nc-api-service/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "nc-api-service"
 }
